@@ -1,0 +1,14 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+  <h1>{{ news.title }}</h1>
+  <p class="card-text">Date : {{ news.created_date }}</p>
+
+  <p>
+    {% for category in news.category.all %}
+      <a href="{% url 'category' slug=category.slug %}">{{ category.name }}</a>
+      {% if not forloop.last %}, {% endif %}
+    {% endfor %}
+  </p>
+  <div>{{ news.content }}</div>
+{% endblock %}
